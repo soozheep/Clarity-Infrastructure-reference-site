@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mirror Mirror — Reflective Interface (Pilot)</title>
+  <meta name="description" content="Mirror Mirror is a proposed reflective interface designed to support self-led clarity under sustained cognitive load." />
+  <style>
+    :root{
+      --bg:#07080a;
+      --panel:rgba(255,255,255,0.06);
+      --panel2:rgba(255,255,255,0.045);
+      --border:rgba(255,255,255,0.10);
+      --text:rgba(255,255,255,0.92);
+      --muted:rgba(255,255,255,0.68);
+      --muted2:rgba(255,255,255,0.52);
+      --shadow: 0 12px 40px rgba(0,0,0,0.55);
+      --radius:22px;
+      --radius2:18px;
+      --max:1100px;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background:
+        radial-gradient(1200px 700px at 20% 0%, rgba(255,255,255,0.10), transparent 60%),
+        radial-gradient(900px 500px at 90% 10%, rgba(255,255,255,0.06), transparent 55%),
+        radial-gradient(900px 700px at 40% 100%, rgba(255,255,255,0.05), transparent 55%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.5;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    .wrap{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 48px 20px 80px;
+    }
+
+    /* Top bar */
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+    .crumb{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      color: var(--muted2);
+      font-size: 13px;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+    }
+    .back{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,0.18);
+      color: var(--muted);
+      font-size: 13px;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+      white-space: nowrap;
+    }
+    .back:hover{
+      transform: translateY(-1px);
+      border-color: rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.06);
+    }
+
+    /* Hero */
+    .hero{
+      padding: 28px 26px;
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,0.065), rgba(255,255,255,0.035));
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      margin-bottom: 18px;
+    }
+    .pillrow{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+      flex-wrap: wrap; /* keep tablet safe */
+    }
+    .label{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,0.25);
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .status{
+      font-size: 12px;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.18);
+    }
+    h1{
+      margin:0;
+      font-size: clamp(30px, 3.6vw, 46px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+    }
+    .sub{
+      margin-top: 12px;
+      color: var(--muted);
+      max-width: 78ch;
+      font-size: 16px;
+    }
+
+    /* Content card */
+    .content{
+      margin-top: 18px;
+      padding: 22px 22px 8px;
+      border-radius: var(--radius);
+      background: var(--panel2);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+    .section{
+      padding: 16px 6px 18px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .section:last-child{ border-bottom: none; padding-bottom: 8px; }
+
+    h2{
+      margin: 0 0 10px;
+      font-size: 18px;
+      letter-spacing: -0.01em;
+    }
+    p{
+      margin: 0 0 12px;
+      color: var(--muted);
+      max-width: 84ch;
+      font-size: 15px;
+    }
+
+    ul{
+      margin: 10px 0 0 18px;
+      padding: 0;
+      color: var(--muted);
+      max-width: 84ch;
+      font-size: 15px;
+    }
+    li{ margin: 6px 0; }
+
+    /* Quiet emphasis */
+    .note{
+      margin-top: 10px;
+      padding: 12px 14px;
+      border-radius: var(--radius2);
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(0,0,0,0.18);
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* Footer */
+    .footer{
+      margin-top: 22px;
+      color: rgba(255,255,255,0.45);
+      font-size: 13px;
+      max-width: 92ch;
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+
+    <div class="topbar">
+      <div class="crumb">Clarity Infrastructure</div>
+      <a class="back" href="index.html" aria-label="Back to Clarity Infrastructure">
+        ← Back to Level 1
+      </a>
+    </div>
+
+    <section class="hero">
+      <div class="pillrow">
+        <div class="label">Clarity Reflection • Interface</div>
+        <div class="status">Status: Proposed / Pilot</div>
+      </div>
+
+      <h1>Mirror Mirror</h1>
+      <div class="sub">
+        Reflective Interface — Pilot Phase.
+        A proposed reflective system designed to support self-led clarity under sustained cognitive load, without advice, persuasion, or instruction.
+      </div>
+    </section>
+
+    <section class="content">
+
+      <div class="section">
+        <h2>Orientation</h2>
+        <p>
+          <strong>Mirror Mirror</strong> is a proposed reflective interface designed to support self-led clarity in individuals operating under sustained cognitive load.
+        </p>
+        <p>
+          It is not an advisory system, coaching tool, or decision engine.
+          It does not guide, instruct, persuade, or optimise outcomes.
+        </p>
+        <p>
+          Instead, Mirror Mirror explores how carefully designed <strong>reflective systems</strong> may help individuals recognise their own signal by reducing internal noise — allowing clarity to emerge without external direction.
+        </p>
+      </div>
+
+      <div class="section">
+        <h2>The Problem Space</h2>
+        <p>Modern decision environments are increasingly shaped by:</p>
+        <ul>
+          <li>continuous information exposure</li>
+          <li>accelerated feedback loops</li>
+          <li>prescriptive tools that prioritise optimisation over discernment</li>
+        </ul>
+        <p>
+          While guidance systems are effective for execution, they often introduce <strong>distortion at the point of sense-making</strong> — especially in high-stakes, identity-relevant, or long-horizon decisions.
+        </p>
+        <p>
+          Mirror Mirror is designed to operate <strong>before instruction</strong> — at the point where clarity is still forming.
+        </p>
+      </div>
+
+      <div class="section">
+        <h2>What Mirror Mirror Is</h2>
+        <p>
+          Mirror Mirror is a proposed interface that reflects a user’s own language, framing, and internal structure back to them without interpretation or advice.
+        </p>
+        <p>The system is designed to:</p>
+        <ul>
+          <li>preserve cognitive autonomy</li>
+          <li>reduce internal contradiction</li>
+          <li>support self-correction through recognition rather than instruction</li>
+        </ul>
+        <p>
+          The reflective mechanism is intentionally constrained.
+          It does not add content.
+          It does not evaluate correctness.
+          It does not recommend action.
+        </p>
+        <p>
+          Its function is to allow individuals to <strong>see themselves more clearly</strong> — and decide what to do next on their own terms.
+        </p>
+      </div>
+
+      <div class="section">
+        <h2>What Mirror Mirror Is Not</h2>
+        <p>Mirror Mirror is <strong>not</strong>:</p>
+        <ul>
+          <li>a therapeutic intervention</li>
+          <li>a coaching or mentoring system</li>
+          <li>an AI advisor or assistant</li>
+          <li>a productivity, optimisation, or performance tool</li>
+        </ul>
+        <p>
+          It does not replace human judgment, expertise, or responsibility.
+          It is designed to <strong>support discernment</strong>, not substitute for it.
+        </p>
+      </div>
+
+      <div class="section">
+        <h2>Pilot Status & Ethical Boundaries</h2>
+        <p>
+          Mirror Mirror is currently in <strong>pilot design and exploration phase</strong>.
+        </p>
+        <p>The work focuses on:</p>
+        <ul>
+          <li>interface constraints</li>
+          <li>ethical limits of reflective intelligence</li>
+          <li>cognitive safety and non-dependence</li>
+          <li>preservation of user agency</li>
+        </ul>
+        <p>
+          Development is intentionally slow and bounded.
+          Any future implementation prioritises clarity, autonomy, and non-intrusion over scale or engagement metrics.
+        </p>
+      </div>
+
+      <div class="section">
+        <h2>Funding & Collaboration Context</h2>
+        <p>Mirror Mirror is suitable for:</p>
+        <ul>
+          <li>research pilots</li>
+          <li>ethical AI exploration</li>
+          <li>clarity and cognition studies</li>
+          <li>non-directive decision-support research</li>
+        </ul>
+
+        <p>Funding is sought to support:</p>
+        <ul>
+          <li>controlled prototyping</li>
+          <li>interface testing</li>
+          <li>ethical review and boundary-setting</li>
+        </ul>
+
+        <div class="note">
+          The work is not positioned for rapid deployment or mass-market optimisation.
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Relationship to Clarity Infrastructure</h2>
+        <p>
+          Mirror Mirror functions as one pillar within the broader <strong>Clarity Infrastructure</strong> framework.
+        </p>
+        <p>
+          Each pillar operates independently.
+          Mirror Mirror may be explored on its own, or alongside other clarity-supporting modalities, without dependency or overlap.
+        </p>
+      </div>
+
+    </section>
+
+    <div class="footer">
+      This page is a reference description of a proposed pilot interface. It does not provide advice, instruction, or direction.
+    </div>
+
+  </main>
+</body>
+</html>
