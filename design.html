@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Transformative Design — Clarity Infrastructure</title>
+  <meta name="description" content="Transformative Design (2008). A foundational reference on transformation as a design process, presented exactly as originally published." />
+
+  <style>
+    :root{
+      --bg:#07080a;
+      --panel:rgba(255,255,255,0.06);
+      --panel2:rgba(255,255,255,0.045);
+      --border:rgba(255,255,255,0.10);
+      --text:rgba(255,255,255,0.92);
+      --muted:rgba(255,255,255,0.68);
+      --muted2:rgba(255,255,255,0.52);
+      --shadow: 0 12px 40px rgba(0,0,0,0.55);
+      --radius:22px;
+      --radius2:18px;
+      --max:1100px;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background:
+        radial-gradient(1200px 700px at 20% 0%, rgba(255,255,255,0.10), transparent 60%),
+        radial-gradient(900px 500px at 90% 10%, rgba(255,255,255,0.06), transparent 55%),
+        radial-gradient(900px 700px at 40% 100%, rgba(255,255,255,0.05), transparent 55%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.5;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    .wrap{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 48px 20px 80px;
+    }
+
+    /* Top bar */
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+    .crumb{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      color: var(--muted2);
+      font-size: 13px;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+    }
+    .back{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,0.18);
+      color: var(--muted);
+      font-size: 13px;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+      white-space: nowrap;
+    }
+    .back:hover{
+      transform: translateY(-1px);
+      border-color: rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.06);
+    }
+
+    /* Hero */
+    .hero{
+      padding: 28px 26px;
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,0.065), rgba(255,255,255,0.035));
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      margin-bottom: 18px;
+    }
+    .pillrow{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+    .label{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,0.25);
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .status{
+      font-size: 12px;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.18);
+    }
+    h1{
+      margin:0;
+      font-size: clamp(30px, 3.6vw, 46px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+    }
+    .sub{
+      margin-top: 12px;
+      color: var(--muted);
+      max-width: 80ch;
+      font-size: 16px;
+    }
+
+    /* Content card */
+    .content{
+      margin-top: 18px;
+      padding: 22px 22px 8px;
+      border-radius: var(--radius);
+      background: rgba(20,20,22,0.88);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+    .section{
+      padding: 16px 6px 18px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .section:last-child{ border-bottom: none; padding-bottom: 8px; }
+
+    h2{
+      margin: 0 0 10px;
+      font-size: 18px;
+      letter-spacing: -0.01em;
+    }
+    p{
+      margin: 0 0 12px;
+      color: var(--muted);
+      max-width: 84ch;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    ul{
+      margin: 10px 0 0 18px;
+      padding: 0;
+      color: var(--muted);
+      max-width: 84ch;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+    li{ margin: 6px 0; }
+
+    .note{
+      margin-top: 10px;
+      padding: 12px 14px;
+      border-radius: var(--radius2);
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(0,0,0,0.18);
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+      max-width: 92ch;
+    }
+
+    /* Access / download block */
+    .access{
+      margin-top: 14px;
+      padding: 16px 14px;
+      border-radius: var(--radius2);
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(0,0,0,0.20);
+      display:flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items:center;
+      justify-content:space-between;
+    }
+    .access .meta{
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+      max-width: 70ch;
+    }
+    .price{
+      color: rgba(255,255,255,0.86);
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 6px;
+    }
+    .download{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding: 12px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.06);
+      color: rgba(255,255,255,0.90);
+      font-size: 14px;
+      white-space: nowrap;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+    }
+    .download:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,0.09);
+      border-color: rgba(255,255,255,0.24);
+    }
+
+    .footer{
+      margin-top: 22px;
+      color: rgba(255,255,255,0.45);
+      font-size: 13px;
+      max-width: 92ch;
+      line-height: 1.6;
+    }
+
+    strong{ color: rgba(255,255,255,0.92); font-weight: 650; }
+  </style>
+</head>
+
+<body>
+  <main class="wrap">
+
+    <div class="topbar">
+      <div class="crumb">Clarity Infrastructure</div>
+      <a class="back" href="index.html" aria-label="Back to Home">
+        ← Back to Home
+      </a>
+    </div>
+
+    <section class="hero">
+      <div class="pillrow">
+        <div class="label">Clarity Encoding • Transformative Design</div>
+        <div class="status">Status: Published (2008)</div>
+      </div>
+
+      <h1>Transformative Design</h1>
+      <div class="sub">
+        A foundational work on transformation as a design process.
+        Written as a postgraduate thesis in 2008 and presented here exactly as originally published.
+      </div>
+    </section>
+
+    <section class="content">
+
+      <div class="section">
+        <h2>Orientation</h2>
+        <p>
+          Transformative Design is not a guide, a course, or a framework designed for quick application.
+        </p>
+        <p>
+          It is a structured exploration of how transformation works —
+          how thought forms, how systems shift, and how design operates beyond surface change.
+        </p>
+        <p>
+          The work is process-driven, restrained, and deliberately focused on the study of recognising transformation in society, products, and thinking.
+        </p>
+      </div>
+
+      <div class="section">
+        <h2>Why This Work Still Matters</h2>
+        <p>
+          Much of what is now described as “transformative thinking” did not yet have language in 2008.
+        </p>
+        <p>
+          This thesis articulated transformation before it became a trend, and without relying on technologies, tools, or predictions that date quickly.
+        </p>
+        <p>
+          It is formed on articulating, studying, and distilling the principle of transformation — so that designers are better able to recognise what transformation looks like and embed the thinking and elements required to support transformative design outcomes.
+        </p>
+      </div>
+
+      <div class="section">
+        <h2>Inside the Work</h2>
+        <p>The thesis explores:</p>
+        <ul>
+          <li>Transformation as a process rather than an outcome</li>
+          <li>The distinction between change, redistribution, and transformation</li>
+          <li>Design as a human-centred, systemic activity</li>
+          <li>Principles that underpin transformative design outcomes</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>Structure of the Work</h2>
+        <p>The thesis is divided into three core sections:</p>
+        <ul>
+          <li><strong>Transformative Design — Principles</strong>: Understanding transformation as a condition and a way of thinking.</li>
+          <li><strong>Transformative Design — Processes</strong>: A six-step transformative process, grounded in observation rather than prescription.</li>
+          <li><strong>Transformative Design — Products</strong>: Twelve in-depth case studies examining transformation across objects, systems, and contexts.</li>
+        </ul>
+        <div class="note">
+          Each section builds methodically, forming a reference rather than a narrative arc.
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Who This Is For</h2>
+        <p>
+          This work is suited to readers who value clarity over persuasion.
+        </p>
+        <p>It may be relevant to:</p>
+        <ul>
+          <li>designers and architects</li>
+          <li>postgraduate and doctoral students</li>
+          <li>researchers and educators</li>
+          <li>systems thinkers</li>
+          <li>practitioners seeking a grounded understanding of transformation</li>
+        </ul>
+        <div class="note">
+          This is not a quick read. It is a reference.
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Provenance</h2>
+        <p>
+          Since its original publication, this work has been distributed internationally and cited in architectural and academic journals across multiple regions.
+        </p>
+        <p>
+          It has circulated internationally and continues to be referenced in academic and professional contexts.
+        </p>
+      </div>
+
+      <div class="section">
+        <h2>Access</h2>
+        <p>
+          <strong>Format:</strong> PDF<br/>
+          <strong>Presented:</strong> exactly as originally published<br/>
+          <strong>No revisions, annotations, or commentary</strong>
+        </p>
+
+        <div class="access">
+          <div class="meta">
+            <div class="price">Price: AUD 69</div>
+            <div style="margin-top:6px;">
+              Download is provided as a PDF file in its original form.
+            </div>
+          </div>
+
+          <!-- Replace the href with your Stripe Checkout / Gumroad / Lulu / or file link when ready -->
+          <a class="download" href="#" aria-label="Download PDF (link not set yet)">
+            Download PDF →
+          </a>
+        </div>
+
+        <div class="note">
+          The download link is intentionally quiet and factual. When you’re ready, we’ll replace the <strong>#</strong> with your checkout or file delivery link.
+        </div>
+      </div>
+
+    </section>
+
+    <div class="footer">
+      This pillar is a fixed reference work (2008). It is presented as a source document within the broader Clarity Infrastructure framework.
+    </div>
+
+  </main>
+</body>
+</html>
