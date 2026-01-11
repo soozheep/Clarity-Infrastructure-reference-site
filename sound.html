@@ -1,52 +1,218 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sonic Remedy — Clarity Infrastructure</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sonic Remedy — Clarity Regulation (Sound)</title>
+  <meta name="description" content="Sonic Remedy is an auditory-based clarity regulation modality designed to reduce cognitive load, stabilise attention, and support internal signal recognition—without instruction, persuasion, or facilitation." />
   <style>
-    /* This file intentionally relies on the same CSS
-       used across Level 2 pages for visual continuity */
+    :root{
+      --bg:#07080a;
+      --panel:rgba(255,255,255,0.06);
+      --panel2:rgba(255,255,255,0.045);
+      --border:rgba(255,255,255,0.10);
+      --text:rgba(255,255,255,0.92);
+      --muted:rgba(255,255,255,0.68);
+      --muted2:rgba(255,255,255,0.52);
+      --shadow: 0 12px 40px rgba(0,0,0,0.55);
+      --radius:22px;
+      --radius2:18px;
+      --max:1100px;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background:
+        radial-gradient(1200px 700px at 20% 0%, rgba(255,255,255,0.10), transparent 60%),
+        radial-gradient(900px 500px at 90% 10%, rgba(255,255,255,0.06), transparent 55%),
+        radial-gradient(900px 700px at 40% 100%, rgba(255,255,255,0.05), transparent 55%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.5;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    .wrap{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 48px 20px 80px;
+    }
+
+    /* Top bar */
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+    .crumb{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      color: var(--muted2);
+      font-size: 13px;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+    }
+    .back{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,0.18);
+      color: var(--muted);
+      font-size: 13px;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+      white-space: nowrap;
+    }
+    .back:hover{
+      transform: translateY(-1px);
+      border-color: rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.06);
+    }
+
+    /* Hero */
+    .hero{
+      padding: 28px 26px;
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,0.065), rgba(255,255,255,0.035));
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      margin-bottom: 18px;
+    }
+    .pillrow{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+      flex-wrap: wrap; /* keep tablet safe */
+    }
+    .label{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,0.25);
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .status{
+      font-size: 12px;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.18);
+    }
+    h1{
+      margin:0;
+      font-size: clamp(30px, 3.6vw, 46px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+    }
+    .sub{
+      margin-top: 12px;
+      color: var(--muted);
+      max-width: 78ch;
+      font-size: 16px;
+    }
+
+    /* Content card */
+    .content{
+      margin-top: 18px;
+      padding: 22px 22px 8px;
+      border-radius: var(--radius);
+      background: rgba(20,20,22,0.88); /* flat */
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+    .section{
+      padding: 16px 6px 18px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .section:last-child{ border-bottom: none; padding-bottom: 8px; }
+
+    h2{
+      margin: 0 0 10px;
+      font-size: 18px;
+      letter-spacing: -0.01em;
+    }
+    p{
+      margin: 0 0 12px;
+      color: var(--muted);
+      max-width: 84ch;
+      font-size: 15px;
+    }
+
+    ul{
+      margin: 10px 0 0 18px;
+      padding: 0;
+      color: var(--muted);
+      max-width: 84ch;
+      font-size: 15px;
+    }
+    li{ margin: 6px 0; }
+
+    /* Quiet emphasis */
+    .note{
+      margin-top: 10px;
+      padding: 12px 14px;
+      border-radius: var(--radius2);
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(0,0,0,0.18);
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* Footer */
+    .footer{
+      margin-top: 22px;
+      color: rgba(255,255,255,0.45);
+      font-size: 13px;
+      max-width: 92ch;
+    }
   </style>
 </head>
-
 <body>
-
-  <div class="wrap">
+  <main class="wrap">
 
     <div class="topbar">
-      <div class="brand">Clarity Infrastructure</div>
-      <a href="index.html" class="back">← Back to Home</a>
+      <div class="crumb">Clarity Infrastructure</div>
+      <a class="back" href="index.html" aria-label="Back to Clarity Infrastructure">
+        ← Back to Home
+      </a>
     </div>
 
-    <!-- HERO CARD -->
-    <div class="card hero">
+    <section class="hero">
       <div class="pillrow">
         <div class="label">Clarity Regulation • Sound</div>
         <div class="status">Status: Operational</div>
       </div>
 
       <h1>Sonic Remedy</h1>
+      <div class="sub">
+        Auditory-based clarity regulation tools designed to reduce cognitive load, stabilise attention, and support internal signal recognition — without instruction, persuasion, or facilitation.
+      </div>
+    </section>
 
-      <p class="lede">
-        Auditory-based clarity regulation tools designed to reduce cognitive load,
-        stabilise attention, and support internal signal recognition — without instruction,
-        persuasion, or facilitation.
-      </p>
-    </div>
+    <section class="content">
 
-    <!-- ORIENTATION -->
-    <div class="card content">
       <div class="section">
         <h2>Orientation</h2>
         <p>
-          Sonic Remedy is a collection of sound-based works designed to support
-          self-led clarity through auditory regulation rather than guidance or direction.
+          <strong>Sonic Remedy</strong> is a collection of sound-based works designed to support self-led clarity through auditory regulation rather than guidance or direction.
         </p>
         <p>
-          The work does not attempt to explain, instruct, or motivate.
-          Instead, it creates conditions in which internal signal recognition may
-          become more accessible under cognitive load.
+          The work does not attempt to explain, instruct, or motivate. Instead, it creates conditions in which internal signal recognition may become more accessible under cognitive load.
         </p>
       </div>
 
@@ -59,73 +225,82 @@
           <li>decision fatigue and internal noise</li>
         </ul>
         <p>
-          While language-based tools are effective for reflection,
-          they often compete with the same cognitive channels they seek to clarify.
+          While language-based tools are effective for reflection, they often compete with the same cognitive channels they seek to clarify.
         </p>
       </div>
 
       <div class="section">
         <h2>What Sonic Remedy Is</h2>
         <p>
-          Sonic Remedy uses sound as a non-verbal medium for clarity regulation.
-          It operates alongside — not within — narrative, instruction, or analysis.
+          Sonic Remedy uses sound as a <strong>non-verbal medium</strong> for clarity regulation. It operates alongside — not within — narrative, instruction, or analysis.
         </p>
+        <p>The work is designed to:</p>
         <ul>
-          <li>supports attentional stabilisation</li>
-          <li>reduces cognitive interference</li>
-          <li>allows meaning to emerge without directive framing</li>
+          <li>support attentional stabilisation</li>
+          <li>reduce cognitive load through non-verbal entrainment</li>
+          <li>create space for internal recognition without external direction</li>
         </ul>
       </div>
 
       <div class="section">
         <h2>What Sonic Remedy Is Not</h2>
+        <p>Sonic Remedy is <strong>not</strong>:</p>
         <ul>
           <li>a therapeutic intervention</li>
-          <li>a coaching or motivational tool</li>
-          <li>a guided meditation system</li>
-          <li>an audio narrative or instructional programme</li>
+          <li>a coaching, mentoring, or motivational system</li>
+          <li>a guided meditation product</li>
+          <li>an audiobook-style instructional experience</li>
         </ul>
         <p>
-          It does not prescribe outcomes or interpretations.
-          Engagement remains self-directed and optional.
+          It does not tell the listener what to think or do. It supports the conditions in which the listener can recognise what is already true for them.
         </p>
       </div>
 
       <div class="section">
-        <h2>Structure of the Work</h2>
+        <h2>Delivery Format</h2>
         <p>
-          Sonic Remedy consists of multiple curated playlists,
-          each operating as an independent auditory environment.
+          Sonic Remedy is delivered through curated sound works and playlists. Listening is self-paced, self-directed, and non-prescriptive.
         </p>
+        <div class="note">
+          Playlist embeds can be added later. For Level 2, the clearest outcome is a stable reference page that funders can read without distraction.
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Funding & Collaboration Context</h2>
+        <p>Sonic Remedy is suitable for:</p>
         <ul>
-          <li>no sequencing requirements</li>
-          <li>no progression model</li>
-          <li>no completion logic</li>
+          <li>clarity and cognition research contexts</li>
+          <li>attention regulation exploration</li>
+          <li>non-clinical wellbeing pilots where non-directive support is required</li>
         </ul>
-        <p>
-          Listeners engage selectively, according to their own context and capacity.
-        </p>
+        <p>Funding may support:</p>
+        <ul>
+          <li>controlled playlist programmes and delivery design</li>
+          <li>measurement design (clarity, attention stability, cognitive load proxies)</li>
+          <li>ethical positioning and non-dependence boundaries</li>
+        </ul>
+        <div class="note">
+          The modality is intentionally non-intrusive: no coaching, no prompts, no persuasion — only a regulated listening environment.
+        </div>
       </div>
 
       <div class="section">
         <h2>Relationship to Clarity Infrastructure</h2>
         <p>
-          Sonic Remedy functions as one operational pillar within the
-          broader Clarity Infrastructure framework.
+          Sonic Remedy functions as one pillar within the broader <strong>Clarity Infrastructure</strong> framework.
         </p>
         <p>
-          It may be used independently or alongside other clarity-supporting
-          modalities, without dependency or overlap.
+          Each pillar operates independently. Sonic Remedy may be used on its own, or alongside other clarity-supporting modalities, without dependency or overlap.
         </p>
       </div>
 
+    </section>
+
+    <div class="footer">
+      This page describes a non-clinical clarity regulation modality. It does not provide advice, instruction, or direction.
     </div>
 
-    <footer>
-      Sonic Remedy is non-clinical, self-directed, and requires no facilitation.
-    </footer>
-
-  </div>
-
+  </main>
 </body>
 </html>
